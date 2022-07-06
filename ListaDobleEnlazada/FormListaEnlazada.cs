@@ -12,7 +12,7 @@ namespace ListaDobleEnlazada
 {
     public partial class FormListaEnlazada : Form
     {
-        TLisAsig MiLista = new TLisAsig();
+        TLista MiLista = new TLista();
         public FormListaEnlazada()
         {
             InitializeComponent();
@@ -36,7 +36,8 @@ namespace ListaDobleEnlazada
                 return;
             }
 
-            MiLista.eliminarLista(txtNombre.Text);
+            MiLista.BuscarPersona(txtNombre.Text);
+            MiLista.EliminarLista();
             MessageBox.Show("Se elimino de la lista...");
         }
 
@@ -48,29 +49,40 @@ namespace ListaDobleEnlazada
 
         private void btnPrimero_Click(object sender, EventArgs e)
         {
-            TNodoAsig aux = (TNodoAsig)MiLista.getPrimero();
-
-            txtNombre.Text = aux.dameAsig();
-            txtHoras.Text = aux.dameHoras().ToString();
-
+            TNodoPersona aux = (TNodoPersona)MiLista.getPrimero();
+            if (aux != null)
+            {
+                txtNombre.Text = aux.getNombre();
+                txtHoras.Text = aux.getHoras().ToString();
+            }
+            else
+            {
+                MessageBox.Show("La lista esta vacia...");
+            }
         }
 
         private void btnUltimo_Click(object sender, EventArgs e)
         {
-            TNodoAsig aux = (TNodoAsig)MiLista.getUltimo();
-
-            txtNombre.Text = aux.dameAsig();
-            txtHoras.Text = aux.dameHoras().ToString();
+            TNodoPersona aux = (TNodoPersona)MiLista.getUltimo();
+            if (aux != null)
+            {
+                txtNombre.Text = aux.getNombre();
+                txtHoras.Text = aux.getHoras().ToString();
+            }
+            else
+            {
+                MessageBox.Show("La lista esta vacia...");
+            }
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
-            TNodoAsig aux = (TNodoAsig)MiLista.getCursor();
+            TNodoPersona aux = (TNodoPersona)MiLista.getCursor();
             if (aux != null)
             {
-                aux = (TNodoAsig)MiLista.getAntCursor();
-                txtNombre.Text = aux.dameAsig();
-                txtHoras.Text = aux.dameHoras().ToString();
+                aux = MiLista.getAnterior(aux.getNombre());
+                txtNombre.Text = aux.getNombre();
+                txtHoras.Text = aux.getHoras().ToString();
             }
             else
             {
@@ -80,11 +92,11 @@ namespace ListaDobleEnlazada
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            TNodoAsig aux = (TNodoAsig)MiLista.getCursor();
+            TNodoPersona aux = (TNodoPersona)MiLista.getCursor();
             if (aux != null) {
-                aux = (TNodoAsig)MiLista.getProxCursor();
-                txtNombre.Text = aux.dameAsig();
-                txtHoras.Text = aux.dameHoras().ToString();
+                aux = MiLista.getPosterior(aux.getNombre());
+                txtNombre.Text = aux.getNombre();
+                txtHoras.Text = aux.getHoras().ToString();
             }
             else
             {
