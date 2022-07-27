@@ -10,8 +10,7 @@ namespace Arbol_Binario
     {
         public NodoArbol raiz;
 
-        public ArbolBinario()
-        {
+        public ArbolBinario() {
             raiz = null;
         }
 
@@ -121,10 +120,8 @@ namespace Arbol_Binario
             return null;
         }
 
-        public NodoArbol buscar(string nombre)
-        {
+        public NodoArbol buscar(string nombre) {
             return buscar(raiz, nombre);
         }
-
     }
 }

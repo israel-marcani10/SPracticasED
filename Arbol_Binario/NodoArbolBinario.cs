@@ -12,8 +12,7 @@ namespace Arbol_Binario
         public NodoArbol EnlaceIzquierdo;
         public NodoArbol EnlaceDerecho;
 
-        public NodoArbol(string info)
-        {
+        public NodoArbol(string info) {
             this.info = info;
             EnlaceDerecho = null;
             EnlaceIzquierdo = null;
