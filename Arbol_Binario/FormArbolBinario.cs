@@ -15,6 +15,7 @@ namespace Arbol_Binario
             else {
                 // introduciendo la raiz del arbol
                 MiArbol.InsertarRaiz(new NodoArbol(txtInsertRaiz.Text));
+                btnInsertRaiz.Enabled = false;
                 MessageBox.Show("Se introducio la raiz");
             }
         }
@@ -25,9 +26,15 @@ namespace Arbol_Binario
                 MessageBox.Show("Introduzca un Padre o hijo");
                 return;
             }
+            if (MiArbol.buscar(txtPadre.Text) == null)
+            {
+                MessageBox.Show("Inserte un nodo padre que exista");
+                return;
+            }
             else
             {
-                MiArbol.InsertarIzq(new NodoArbol(txtHijo.Text), new NodoArbol(txtPadre.Text));
+                NodoArbol aux = MiArbol.buscar(txtPadre.Text);
+                MiArbol.InsertarIzq(new NodoArbol(txtHijo.Text), aux);
                 MessageBox.Show("Se introducio el nodo a la izquierda");
             }
         }
@@ -38,9 +45,15 @@ namespace Arbol_Binario
                 MessageBox.Show("Introduzca un Padre o hijo");
                 return;
             }
+            if (MiArbol.buscar(txtPadre.Text) == null)
+            {
+                MessageBox.Show("Inserte un nodo padre que exista");
+                return;
+            }
             else
             {
-                MiArbol.InsertarDer(new NodoArbol(txtHijo.Text), new NodoArbol(txtPadre.Text));
+                NodoArbol aux = MiArbol.buscar(txtPadre.Text);
+                MiArbol.InsertarDer(new NodoArbol(txtHijo.Text), aux);
                 MessageBox.Show("Se introducio el nodo a la derecha");
             }
         }
@@ -52,9 +65,15 @@ namespace Arbol_Binario
                 MessageBox.Show("Introduzca un Padre");
                 return;
             }
+            if (MiArbol.buscar(txtPadre.Text) == null)
+            {
+                MessageBox.Show("Inserte un nodo padre que exista");
+                return;
+            }
             else
             {
-                MiArbol.EliminarIzquierdo(new NodoArbol(txtPadre.Text));
+                NodoArbol aux = MiArbol.buscar(txtPadre.Text);
+                MiArbol.EliminarIzquierdo(aux);
             }
         }
 
@@ -65,9 +84,15 @@ namespace Arbol_Binario
                 MessageBox.Show("Introduzca un Padre");
                 return;
             }
+            if (MiArbol.buscar(txtPadre.Text) == null)
+            {
+                MessageBox.Show("Inserte un nodo padre que exista");
+                return;
+            }
             else
             {
-                MiArbol.EliminarDerecho(new NodoArbol(txtPadre.Text));
+                NodoArbol aux = MiArbol.buscar(txtPadre.Text);
+                MiArbol.EliminarDerecho(aux);
             }
         }
 
@@ -78,12 +103,17 @@ namespace Arbol_Binario
 
         private void btnEntreOrden_Click(object sender, EventArgs e)
         {
-            //txtMostrarArbol.Text = MiArbol.EntreOrden();
+            txtMostrarArbol.Text = MiArbol.EntreOrden(MiArbol.raiz);
         }
 
         private void btnPosOrden_Click(object sender, EventArgs e)
         {
-            //txtMostrarArbol.Text = MiArbol.PosOrden();
+            txtMostrarArbol.Text = MiArbol.PosOrden(MiArbol.raiz);
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtMostrarArbol.Text = "";
         }
     }
 }

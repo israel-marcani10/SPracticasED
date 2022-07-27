@@ -45,6 +45,7 @@
             this.btnEntreOrden = new System.Windows.Forms.Button();
             this.btnPreOrden = new System.Windows.Forms.Button();
             this.txtMostrarArbol = new System.Windows.Forms.TextBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -171,6 +172,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnLimpiar);
             this.groupBox3.Controls.Add(this.btnPosOrden);
             this.groupBox3.Controls.Add(this.btnEntreOrden);
             this.groupBox3.Controls.Add(this.btnPreOrden);
@@ -214,10 +216,20 @@
             // 
             // txtMostrarArbol
             // 
-            this.txtMostrarArbol.Location = new System.Drawing.Point(184, 75);
+            this.txtMostrarArbol.Location = new System.Drawing.Point(182, 60);
             this.txtMostrarArbol.Name = "txtMostrarArbol";
             this.txtMostrarArbol.Size = new System.Drawing.Size(308, 23);
             this.txtMostrarArbol.TabIndex = 0;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(272, 89);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(128, 31);
+            this.btnLimpiar.TabIndex = 4;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // FormArbolBinario
             // 
@@ -258,5 +270,6 @@
         private Button btnEntreOrden;
         private Button btnPreOrden;
         private TextBox txtMostrarArbol;
+        private Button btnLimpiar;
     }
 }
