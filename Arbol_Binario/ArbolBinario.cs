@@ -26,19 +26,7 @@ namespace Arbol_Binario
         public void InsertarRaiz(NodoArbol a)
         {
             if (vacio())
-            {
                 raiz = a;
-            }
-        }
-
-        public void Insertar(NodoArbol a, NodoArbol padre)
-        {
-            if (padre.EnlaceIzquierdo == null)
-            {
-                padre.EnlaceIzquierdo = a;
-            }
-            else
-                padre.EnlaceDerecho = a;
         }
 
         public void InsertarIzq(NodoArbol a, NodoArbol padre)
@@ -69,27 +57,27 @@ namespace Arbol_Binario
 
         public void EliminarIzquierdo(NodoArbol padre)
         {
-            NodoArbol aux = buscar(padre, padre.info);
+            NodoArbol aux;
             aux = padre.EnlaceIzquierdo;
             padre.EnlaceIzquierdo = null;
             System.Windows.Forms.MessageBox.Show("El elemento eliminado es =" + aux.info);
         }
 
-        private string PreOrden1(NodoArbol r)
+        private string PreOrden(NodoArbol r)
         {
             string result = "";
             if (r != null)
             {
                 result += r.info + "  ";
-                result += PreOrden1(r.EnlaceIzquierdo);
-                result += PreOrden1(r.EnlaceDerecho);
+                result += PreOrden(r.EnlaceIzquierdo);
+                result += PreOrden(r.EnlaceDerecho);
             }
             return result;
         }
 
         public string PreOrden1()
         {
-            return PreOrden1(raiz);
+            return PreOrden(raiz);
         }
 
         public string EntreOrden(NodoArbol r)
@@ -118,19 +106,15 @@ namespace Arbol_Binario
 
         private NodoArbol buscar(NodoArbol r, string nombre)
         {
-            if ((r != null))
-            {
-                if (r.info == nombre)
-                {
+            if (r != null) {
+                if (r.info == nombre) {
                     return r;
                 }
                 NodoArbol aux = buscar(r.EnlaceIzquierdo, nombre);
-                if (aux != null)
-                {
+                if (aux != null) {
                     return aux;
                 }
-                else
-                {
+                else {
                     return buscar(r.EnlaceDerecho, nombre);
                 }
             }
